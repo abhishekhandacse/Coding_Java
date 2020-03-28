@@ -4,6 +4,7 @@ public class LeetCodePracticeInJava {
     public static void main(String[] args) {
             Easy_MinCostClimbingStairs obj= new Easy_MinCostClimbingStairs();
 
-            System.out.println(obj.minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1}));
+            System.out.println(obj.minCostClimbingStairs(new int[]{0}));
+            System.out.println("End of main file");
     }
 }
