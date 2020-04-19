@@ -6,7 +6,7 @@ public class UnionFindAlgorithm {
 
     // This function will return representative of a particular set
     // Also this would do path compression
-    int find(Set[] sets,int index){
+    public int find(Set[] sets,int index){
         if(sets==null)return -1;
         if(sets[index].parent==index)return index;// Returning the representative
 
@@ -16,7 +16,7 @@ public class UnionFindAlgorithm {
     // Amortized TC= O(1)
 
     // This function would do union with Ranking
-    void union(Set[] sets,int first,int second){
+    public void union(Set[] sets,int first,int second){
         // Find the representative of each set
         int repr_first=find(sets,first);
         int repr_second=find(sets,second);
