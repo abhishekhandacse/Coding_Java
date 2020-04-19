@@ -59,6 +59,7 @@ class CustomStack {
  * obj.increment(k,val);
  */
 // Lazy increment Optimzed Code
+/*
 class CustomStack {
     private int[] arr;
     private int[] val;
@@ -95,6 +96,54 @@ class CustomStack {
             }
         }
         return arr[index];
+    }
+
+    public void increment(int k, int val) {
+        if(index==0)
+            return;
+        if(k>index-1) {
+            this.val[index-1] += val;
+            return;
+        }
+        this.val[k-1]+=val;
+    }
+}
+*/
+// Further Optimization with pop also O(1) operation
+class CustomStack {
+    private int[] arr;
+    private int[] val;
+    private int index;
+    private int maxSize;
+    public CustomStack(int maxSize) {
+        this.maxSize=maxSize;
+        arr=new int[maxSize];
+        val=new int[maxSize];
+        index=0;
+    }
+
+    public void push(int x) {
+        if(index==maxSize)
+            return;
+        arr[index]=x;
+        index++;
+    }
+
+    public int pop() {
+        if(index==0)return -1;
+
+
+        index--;
+
+        if(val[index]==0){
+            return arr[index];
+        }else{
+            int ans=arr[index]+val[index];
+            val[index-1]+=val[index];
+            val[index]=0;
+            return ans;
+        }
+
     }
 
     public void increment(int k, int val) {
