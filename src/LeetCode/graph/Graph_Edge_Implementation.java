@@ -1,6 +1,4 @@
-package graph;
-
-import disjoint_set.UnionFindAlgorithm;
+package LeetCode.graph;
 
 public class Graph_Edge_Implementation {
 

@@ -1,4 +1,4 @@
-package stacks;
+package LeetCode.stacks;
 
 public class Medium_DesignStackWithIncOpertation {
     CustomStack obj=new CustomStack(100);// This class is just for API testing purpose

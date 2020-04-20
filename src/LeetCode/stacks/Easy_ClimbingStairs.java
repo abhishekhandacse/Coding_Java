@@ -1,4 +1,4 @@
-package stacks;
+package LeetCode.stacks;
 
 public class Easy_ClimbingStairs {
     public int climbStairs(int n) {

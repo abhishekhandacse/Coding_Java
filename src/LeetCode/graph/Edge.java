@@ -1,4 +1,4 @@
-package graph;
+package LeetCode.graph;
 
 public class Edge {
     int src;

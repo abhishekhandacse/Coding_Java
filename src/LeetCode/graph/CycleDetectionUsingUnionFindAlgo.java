@@ -1,7 +1,7 @@
-package graph;
+package LeetCode.graph;
 
-import disjoint_set.Set;
-import disjoint_set.UnionFindAlgorithm;
+import LeetCode.disjoint_set.Set;
+import LeetCode.disjoint_set.UnionFindAlgorithm;
 
 public class CycleDetectionUsingUnionFindAlgo {
     boolean isCycle(Graph_Edge_Implementation g){

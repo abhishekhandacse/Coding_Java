@@ -1,4 +1,4 @@
-package stacks;
+package LeetCode.stacks;
 
 public class Easy_MinCostClimbingStairs {
     public int minCostClimbingStairs(int[] cost) {

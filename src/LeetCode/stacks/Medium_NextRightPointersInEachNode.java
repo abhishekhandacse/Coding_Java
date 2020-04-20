@@ -1,7 +1,4 @@
-package stacks;
-
-import java.util.LinkedList;
-import java.util.Queue;
+package LeetCode.stacks;
 
 class TreeNodenew {
     public int val;

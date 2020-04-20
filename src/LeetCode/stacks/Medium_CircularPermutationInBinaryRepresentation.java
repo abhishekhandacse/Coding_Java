@@ -1,4 +1,4 @@
-package stacks;
+package LeetCode.stacks;
 import java.util.ArrayList;
 import java.util.List;
 public class Medium_CircularPermutationInBinaryRepresentation {

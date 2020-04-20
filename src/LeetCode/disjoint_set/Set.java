@@ -1,4 +1,4 @@
-package disjoint_set;
+package LeetCode.disjoint_set;
 
 public class Set {
     int rank;

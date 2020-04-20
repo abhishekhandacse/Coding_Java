@@ -1,4 +1,4 @@
-package stacks;
+package LeetCode.stacks;
 
 import java.util.LinkedList;
 import java.util.Queue;
