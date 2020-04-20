@@ -24,7 +24,7 @@ class Edge implements Comparable<Edge>{
             else{return -1;}
     }
 }
-class Graph{
+ class Graph{
     int V;
     int E;
     Edge edge[];

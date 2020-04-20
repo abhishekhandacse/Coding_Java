@@ -8,10 +8,14 @@ public class Graph {
     private int E;
 
     // Array of Adjacency List for storing mapping
-    LinkedList<Integer> adj[];
+    private LinkedList<Integer> adj[];
 
     public int getV() {
         return V;
+    }
+
+    public LinkedList<Integer>[] getAdj() {
+        return adj;
     }
 
     public int getE() {
