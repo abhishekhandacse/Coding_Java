@@ -1,4 +1,4 @@
-package JavaBook_RobertSadgewick;
+package JavaBook_RobertSadgewick.graph;
 
 import java.util.Iterator;
 import java.util.LinkedList;

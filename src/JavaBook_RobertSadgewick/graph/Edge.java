@@ -1,4 +1,4 @@
-package LeetCode.graph;
+package JavaBook_RobertSadgewick.graph;
 
 public class Edge {
     int src;

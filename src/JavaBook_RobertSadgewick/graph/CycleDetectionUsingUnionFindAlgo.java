@@ -1,7 +1,7 @@
-package LeetCode.graph;
+package JavaBook_RobertSadgewick.graph;
 
-import LeetCode.disjoint_set.Set;
-import LeetCode.disjoint_set.UnionFindAlgorithm;
+import JavaBook_RobertSadgewick.disjoint_set.Set;
+import JavaBook_RobertSadgewick.disjoint_set.UnionFindAlgorithm;
 
 public class CycleDetectionUsingUnionFindAlgo {
     boolean isCycle(Graph_Edge_Implementation g){

@@ -1,4 +1,4 @@
-package LeetCode.disjoint_set;
+package JavaBook_RobertSadgewick.disjoint_set;
 /*
 * This Algorithm Implements Disjoint set data structure with Union find algorithm with Rank and Path Compression
 * */

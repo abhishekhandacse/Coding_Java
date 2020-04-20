@@ -1,4 +1,4 @@
-package LeetCode.disjoint_set;
+package JavaBook_RobertSadgewick.disjoint_set;
 
 public class Set {
     int rank;
