@@ -3,8 +3,8 @@ package geeksforgeeksimproved.binaryheap;
 public class MinHeap {
 
         private int[] harr;
-        int maxsize;
-        int currsize;
+        private int maxsize;
+        private int currsize;
 
     public MinHeap(int size) {
         this.maxsize = size;
