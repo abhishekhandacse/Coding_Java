@@ -11,6 +11,13 @@ public class MinHeap {
         harr=new int[maxsize];
         currsize=0;
     }
+    // It is assumed that new_val is smaller than harr[index]
+    public void decreasekey(int index,int new_val){
+        harr[index]=new_val;
+        if(harr[index] < harr[(index-1)/2]){
+            insert_aux(index);
+        }
+    }
    private void insert_aux(int index){
         if(index==0)return;// base condition
         int parent_index=   (int)Math.ceil(  (double) ((double) index/(double) 2)) -1;
@@ -94,7 +101,17 @@ public class MinHeap {
 * */
     public static void main(String[] args) {
         MinHeap mh=new MinHeap(11);
-        mh.insert(3);
+
+        mh.insert(20);
+        mh.insert(15);
+        mh.insert(10);
+        mh.printHeap();
+
+        mh.decreasekey(2,5);
+
+        mh.printHeap();
+
+        /*mh.insert(3);
         mh.insert(2);
         mh.insert(1);
         mh.insert(0);
@@ -109,7 +126,7 @@ public class MinHeap {
         mh.printHeap();
         System.out.println(mh.extractMin());
         mh.printHeap();
-        System.out.println(mh.extractMin());
+        System.out.println(mh.extractMin());*/
     }
 
 
