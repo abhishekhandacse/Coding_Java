@@ -3,24 +3,16 @@ package geeksforgeeksimproved.graphs;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-/*
-*    Heap Implementation for Dijkstra Algorithm
-*    Map here stores mapping between vertex number and actual index for the heap
-*/
-class Pair<T>{
-    T key;
-    T val;
-    public Pair(T key, T val) {
-        this.key = key;
-        this.val = val;
-    }
-}
 
+
+/*
+ *    Map here stores mapping between vertex number and actual index in of that corresponding vertex in MinHeap array
+ */
 class MyMinHeap{
-    private Pair<Integer>[] harr;
-    private int maxsize;
-    private int currsize;
-    Map<Integer,Integer> hm;        // Vertex no , place in min heap
+    private Pair<Integer>[] harr;               // arr of Pair<Distance,Vertex No>
+    private int maxsize;                        // Maxsize of elements that heap can handle
+    private int currsize;                       // Curr size of the heap
+    Map<Integer,Integer> hm;                    // Used to store mapping of <Vertex no , index of this vertex in  min heap>
     public MyMinHeap(int size) {
         this.maxsize = size;
         harr=new Pair[maxsize];
@@ -30,23 +22,23 @@ class MyMinHeap{
         currsize=0;
         hm=new HashMap<>();
     }
-    boolean isEmpty(){
+    boolean isEmpty(){                          //Confirms weather heap is empty or not
         return currsize==0;
     }
-    boolean isPresent(int v){
+    boolean isPresent(int v){                   //Confirms weather this particualar Vertex No is present in the heap or not
         return hm.containsKey(v);
     }
-    public void decreasekey(int vertex_no,int new_val){         // My Assumption that val would only be decreased
+    public void decreasekey(int vertex_no,int new_val){         // My Assumption that val would only be decreased since we are propagating the change up the tree
         if(hm.containsKey(vertex_no)==false){
             System.out.println("Decrease Key not possible since vertex not present in graph");
         }
-        int index=hm.get(vertex_no);
+        int index=hm.get(vertex_no);                            // Gets the index of corresponding vertex no in the min heap array
         harr[index].key=new_val;
         if(harr[index].key < harr[(index-1)/2].key){
-            insert_aux(index);
+            insert_aux(index);                                  // This is just heapify and propagating the change towards root
         }
     }
-    private void insert_aux(int index){
+    private void insert_aux(int index){                         // This function performs heapify by propagating the smaller element towards the root of the tree
         if(index==0)return;// base condition
         int parent_index=   (int)Math.ceil(  (double) ((double) index/(double) 2)) -1;
         int min_index=parent_index;
@@ -62,7 +54,7 @@ class MyMinHeap{
 
             hm.put(harr[parent_index].val , min_index );
             hm.put(harr[min_index].val,parent_index);
-            Pair<Integer> temp=new Pair<Integer>(harr[parent_index].key , harr[parent_index].val);
+            Pair<Integer> temp=new Pair<Integer>(harr[parent_index].key , harr[parent_index].val);      // Storing index of vertex no and its corresponding position in the map for easy reference
             harr[parent_index].key = harr[min_index].key;
             harr[parent_index].val=harr[min_index].val;
             harr[min_index].key=temp.key;
@@ -73,7 +65,7 @@ class MyMinHeap{
             hm.put(harr[index].val,index);
         }
     }
-    public void insert(int vertex_no,int key){
+    public void insert(int vertex_no,int key){      // This function inserts the key corresponding to a particualar vertex no in the min heap
         if(currsize>=maxsize){
             System.out.println("Overflow");
         }
@@ -82,12 +74,12 @@ class MyMinHeap{
         if(currsize==0) {
             hm.put(vertex_no,0);        // HeapIndex for the first node would obviously be 0
         }else{
-            insert_aux(currsize);
+            insert_aux(currsize);           // Propagating the change in the heap
         }
         currsize++;
     }
 
-    private void MinHeapify(int index){
+    private void MinHeapify(int index){     //This function performs heapify from that elements towards the leaves of the tree (heap)
         if(index>=currsize)return;   //base condition
 
         int left_index=2*index + 1;
@@ -117,7 +109,7 @@ class MyMinHeap{
             hm.put(  harr[index].val , index   );   //Already at correct position
         }
     }
-    public Pair extractMin(){
+    public Pair extractMin(){                               // Performs Extract Min operation by extracting first element of the array and calling heapify
         if(currsize==0){
             System.out.println("Underflow");
             return new Pair(Integer.MAX_VALUE,Integer.MAX_VALUE);
@@ -150,10 +142,18 @@ class MyMinHeap{
          }
     }
 }
-
+// This Pair just expands to Pair<distance , vertex no> just for making distance to a vertex
+class Pair<T>{
+    T key;
+    T val;
+    public Pair(T key, T val) {
+        this.key = key;
+        this.val = val;
+    }
+}
 class Dijkstra_Graph{
     int V;
-    LinkedList<Pair<Integer> > adj[];
+    LinkedList<Pair<Integer> > adj[];           // This stores the graph in the form of < source,< destination,weight > >
 
     public Dijkstra_Graph(int v) {
         V = v;
@@ -164,38 +164,41 @@ class Dijkstra_Graph{
     }
     void addEdge(int u,int v,int w){
         adj[u].add(new Pair(v,w));
-        adj[v].add(new Pair(u,w));
+        adj[v].add(new Pair(u,w));                          // This is a undirected graph
     }
-    void dijkstra(int source){
+    void dijkstra(int source){                              // Method for performing dijkstra algorithm
         int V=this.V;
-        MyMinHeap mh=new MyMinHeap(V);
-        int dist[]=new int[V];
+        MyMinHeap mh=new MyMinHeap(V);                      // Taking min heap of size V vertices
+        int dist[]=new int[V];                              // Distance vertex tells the distance from the source to all other vertices
         for(int i=0;i<V;i++){
             dist[i]=Integer.MAX_VALUE;
             mh.insert(i,dist[i]);
         }
-        mh.decreasekey(source,0);
+        mh.decreasekey(source,0);                   // Making the source vertex to be extracted first
         dist[source]=0;
 
-        while(! mh.isEmpty()){
+        while(! mh.isEmpty()){                               // Till heap does not becomes empty
             Pair<Integer> p=mh.extractMin();
             int u=p.val;
             int distance=p.key;
-            for(Pair<Integer> iter:adj[u]){
+            for(Pair<Integer> iter:adj[u]){                  // Iterating the adjacancy list of the current vertex
 
                 int v=iter.key;// this is adj vertex
                 int weight=iter.val;
 
                 if(mh.isPresent(v) && distance!=Integer.MAX_VALUE   && distance + weight < dist[v]   ){
-                    dist[v]=distance + weight;
-                    mh.decreasekey(v,dist[v]);
+                    // if destination vertex is present in the min heap and its own distance is finite and
+                    // distance through it less than destination orignal distance
+                    dist[v]=distance + weight;      // Update the distance to smaller distance
+                    mh.decreasekey(v,dist[v]);      // Update the distance in the min heap also
                 }
             }
         }
         /*Print the distances to all respective vertices*/
-
+        System.out.println( "\nVertex" +  "           " + "Distance");
+        System.out.println();
         for(int i=0;i<V;i++){
-            System.out.println(i + " -- " + dist[i]);
+            System.out.println("  " + i + "      -->        " + dist[i]);
         }
         System.out.println();
 
@@ -204,26 +207,16 @@ class Dijkstra_Graph{
 
 public class DijkstraAlgorithm {
     public static void main(String[] args) {
-        Dijkstra_Graph g=new Dijkstra_Graph(9);
-        g.addEdge( 0, 1, 4);
-        g.addEdge( 0, 7, 8);
-        g.addEdge( 1, 2, 8);
-        g.addEdge( 1, 7, 11);
-        g.addEdge( 2, 3, 7);
-        g.addEdge( 2, 8, 2);
-        g.addEdge( 2, 5, 4);
-        g.addEdge( 3, 4, 9);
-        g.addEdge( 3, 5, 14);
-        g.addEdge( 4, 5, 10);
-        g.addEdge( 5, 6, 2);
-        g.addEdge( 6, 7, 1);
-        g.addEdge( 6, 8, 6);
-        g.addEdge( 7, 8, 7);
+        Dijkstra_Graph g=new Dijkstra_Graph(5 );
+        g.addEdge( 0, 1, 3);
+        g.addEdge( 1, 2, 1);
+        g.addEdge( 2, 3, 2);
+        g.addEdge( 1, 3, 4);
+        g.addEdge( 0, 3, 7);
+        g.addEdge( 0, 4, 8);
+        g.addEdge( 4, 3, 3);
 
         g.dijkstra( 0);
-
-
-
 
         /*<-----------For Debugging min heap----->*/
         /*MyMinHeap obj=new MyMinHeap(7);
