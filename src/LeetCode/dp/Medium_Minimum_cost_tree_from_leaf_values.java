@@ -1,5 +1,7 @@
 package LeetCode.dp;
 
+import java.util.Stack;
+
 public class Medium_Minimum_cost_tree_from_leaf_values {
             // Time Complexity = O(Len ^ 3)         Space Complexity = O(Len ^ 2)
             static final boolean DEBUG=false;
@@ -68,14 +70,12 @@ public class Medium_Minimum_cost_tree_from_leaf_values {
 
 
 
-    // TC is O(N^2) due to skipping deleted value in arrays and SC is O(1)
-    // The innermost while loops will run atmost 40 times in the worst case and could be ignored // Or You can use linkedlist to save even those computations
+    // TC is O(N^2)  SC is O(1)
+    // The innermost while loops will run atmost 40 times in the worst case and could be ignored in this case **Better Alternative could be -->** You can use doubly linkedlist where you can delete smaller element in O(1) time and no need of skipping values
     public int mctFromLeafValues_Optimized(int[] arr) {
         if(arr==null || arr.length==0)return Integer.MAX_VALUE; // This is not possible as mentioned in constraints
         if(arr.length==1)return Integer.MAX_VALUE;
-
         int num_of_elements=arr.length;
-
         int cost=0;
         while(num_of_elements>1){
             int i=0,j=0;
@@ -85,9 +85,9 @@ public class Medium_Minimum_cost_tree_from_leaf_values {
                 if(i==j){
                     j++;
                 }
-                while(arr[i]==Integer.MAX_VALUE)
+                while(arr[i]==Integer.MAX_VALUE)            // This while loop is for skipping already deleted nodes    (These would not be there if you are using linkedlist implementation)
                     i++;
-                while(arr[j]==Integer.MAX_VALUE || (i==j))
+                while(arr[j]==Integer.MAX_VALUE || (i==j))  // This while loop is for skipping already deleted nodes.
                     j++;
                 if(min_prod>(arr[i]*arr[j]) ){
                     min_prod=(arr[i]*arr[j]);
@@ -101,7 +101,6 @@ public class Medium_Minimum_cost_tree_from_leaf_values {
             num_of_elements--;
         }
         return cost;
-
     }
 
     /*
@@ -143,7 +142,27 @@ public class Medium_Minimum_cost_tree_from_leaf_values {
         return cost;
 
     }
-
+    /*  This solution is very tricky
+    *   References
+    *   https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/discuss/339959/One-Pass-O(N)-Time-and-Space
+    *   I am just trying to give an explanation for better understanding and have copied the code from above link.
+    */
+    public int mctFromLeafValues_Most_Optimized(int[] A) {
+        int res = 0;
+        Stack<Integer> stack = new Stack<>();
+        stack.push(Integer.MAX_VALUE);  // This is just a sentinal value to avoid keep checking the stack emptiness condition (Using this he is ensuring himself that no matter what stack would never be empty)
+        for (int a : A) {
+            while (stack.peek() <= a) {
+                int mid = stack.pop();// This is just like picking the smallest element
+                res += mid * Math.min(stack.peek(), a);// since current element is >=top implies the second min element could either be the element present in the top of the stack or incoming array element.
+            }
+            stack.push(a);// Doing similer to next greater element problem in which stack with descending values is maintained.
+        }
+        while (stack.size() > 2) {
+            res += stack.pop() * stack.peek();//Just doing last pass in case some elements are still no processed i:e we have delayed their processing by putting them into stack
+        }
+        return res;
+    }
     // Unit testing
     public static void main(String[] args) {
         Medium_Minimum_cost_tree_from_leaf_values obj=new Medium_Minimum_cost_tree_from_leaf_values();
