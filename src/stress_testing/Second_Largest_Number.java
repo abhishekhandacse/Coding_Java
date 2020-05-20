@@ -21,8 +21,6 @@ import java.util.Scanner;
 public class Second_Largest_Number {
     // Time Complexity O(NlogN)
     static int  printSecondLargest_brute_force(int[] arr){
-
-
         // Following intentionally not optimized Sorting approach
         Arrays.sort(arr);   // Sorts the array in ascending order
         return arr[arr.length-2];
