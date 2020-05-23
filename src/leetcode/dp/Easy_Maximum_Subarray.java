@@ -1,4 +1,4 @@
-package LeetCode.dp;
+package leetcode.dp;
 /*
 *   There are almost 4 methods to do this problem with varying Time Complexity
 * 1) Brute force by making 2 nested loops for picking all subarrays and third nested loop for calculating sum from i-->j    TC O(N^3)

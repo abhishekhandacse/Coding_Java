@@ -1,6 +1,5 @@
-package JavaBook_RobertSadgewick.graph;
+package javabook_robertsadgewick.graph;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Graph {

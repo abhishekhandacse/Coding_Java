@@ -1,4 +1,4 @@
-package LeetCode.dp;
+package leetcode.dp;
 
 
 // Time Complexity-: O(N^2) Space Complexity-: O(N^2)     // Space Complexity can be reduced further on the cost of modifying original matrix which is not a good practice

@@ -1,4 +1,4 @@
-package JavaBook_RobertSadgewick.disjoint_set;
+package javabook_robertsadgewick.disjoint_set;
 
 public class Set {
     int rank;

@@ -1,4 +1,4 @@
-package LeetCode.stacks;
+package leetcode.stacks;
 
 public class Medium_TreeSerializeDeserialize {
     public static void main(String[] args) {

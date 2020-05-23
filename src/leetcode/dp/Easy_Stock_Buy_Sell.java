@@ -1,4 +1,4 @@
-package LeetCode.dp;
+package leetcode.dp;
 
 public class Easy_Stock_Buy_Sell {
     public int maxProfit(int[] prices) {

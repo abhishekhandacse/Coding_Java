@@ -1,4 +1,4 @@
-package LeetCode.May_31DayLeetCodeChallenge;
+package leetcode.May_31DayLeetCodeChallenge;
 
 public class W1_Day1_FirstBadVersion {
     public boolean isBadVersion(int n){

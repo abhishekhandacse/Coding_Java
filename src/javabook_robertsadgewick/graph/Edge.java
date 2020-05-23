@@ -1,4 +1,4 @@
-package JavaBook_RobertSadgewick.graph;
+package javabook_robertsadgewick.graph;
 
 public class Edge {
     int src;

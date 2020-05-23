@@ -1,8 +1,8 @@
 package geeksforgeeksimproved.graphs;
 
 
-import JavaBook_RobertSadgewick.disjoint_set.Set;
-import JavaBook_RobertSadgewick.disjoint_set.UnionFindAlgorithm;
+import javabook_robertsadgewick.disjoint_set.Set;
+import javabook_robertsadgewick.disjoint_set.UnionFindAlgorithm;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;

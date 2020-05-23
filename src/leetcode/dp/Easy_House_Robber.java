@@ -1,4 +1,4 @@
-package LeetCode.dp;
+package leetcode.dp;
 
 public class Easy_House_Robber {
     // TC- O(N)   SC- (N)

@@ -1,4 +1,4 @@
-package MultiThreading;
+package multithreading;
 /*
 *   I have referred Telusko channel https://www.youtube.com/watch?v=Xj1uYKa8rIw&list=PLsyeobzWxl7rmuFYRpkqLanwoG4pQQ7oW&index=2
 */

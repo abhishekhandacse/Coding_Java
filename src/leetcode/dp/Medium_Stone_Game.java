@@ -1,4 +1,4 @@
-package LeetCode.dp;
+package leetcode.dp;
 /*
 * When num of piles are given even then there is atleast one case in which if alex plays optimally, she is able to partition the array with more stones
 * But if num of piles are odd, then no such mathamatical then there is no mathamatical solution exists in that case and we need to stick to our basics in following apprioches like

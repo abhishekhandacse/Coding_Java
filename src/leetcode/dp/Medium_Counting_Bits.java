@@ -1,4 +1,4 @@
-package LeetCode.dp;
+package leetcode.dp;
 
 public class Medium_Counting_Bits {
 

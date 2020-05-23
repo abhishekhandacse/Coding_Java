@@ -1,4 +1,4 @@
-package LeetCode.dp;
+package leetcode.dp;
 
 public class Medium_Count_Square_Submatrices_With_All_Ones {
     // Time Complexity O(N^3)  Space Complexity O(R*C)

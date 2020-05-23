@@ -1,4 +1,4 @@
-package LeetCode.heaps;
+package leetcode.heaps;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

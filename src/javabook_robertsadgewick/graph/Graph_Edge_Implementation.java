@@ -1,4 +1,4 @@
-package JavaBook_RobertSadgewick.graph;
+package javabook_robertsadgewick.graph;
 
 public class Graph_Edge_Implementation {
 

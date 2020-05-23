@@ -1,4 +1,4 @@
-package LeetCode.stacks;
+package leetcode.stacks;
 
 class TreeNodenew {
     public int val;

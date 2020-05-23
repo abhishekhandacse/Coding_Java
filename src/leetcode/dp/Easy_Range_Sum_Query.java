@@ -1,4 +1,4 @@
-package LeetCode.dp;
+package leetcode.dp;
 
 public class Easy_Range_Sum_Query {
 

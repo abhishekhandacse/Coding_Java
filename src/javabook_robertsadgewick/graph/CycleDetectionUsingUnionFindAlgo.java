@@ -1,7 +1,7 @@
-package JavaBook_RobertSadgewick.graph;
+package javabook_robertsadgewick.graph;
 
-import JavaBook_RobertSadgewick.disjoint_set.Set;
-import JavaBook_RobertSadgewick.disjoint_set.UnionFindAlgorithm;
+import javabook_robertsadgewick.disjoint_set.Set;
+import javabook_robertsadgewick.disjoint_set.UnionFindAlgorithm;
 
 public class CycleDetectionUsingUnionFindAlgo {
     boolean isCycle(Graph_Edge_Implementation g){
