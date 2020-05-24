@@ -1,27 +1,12 @@
 package leetcode.dp;
 
-
-
-
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Medium_LongestStringChain {
 
-    void print(int[][] arr){
-        System.out.println(); System.out.println();
-        for(int i=0;i<arr.length;i++){
-            for(int j=0;j<arr[i].length;j++){
-                System.out.print(arr[i][j]+ "  " );
-            }
-            System.out.println();
-        }
 
-        System.out.println(); System.out.println();
-
-    }
     private boolean isPrefix(String first,String second){
         if((second.length()-first.length())!=1)return false;
 
@@ -40,35 +25,23 @@ public class Medium_LongestStringChain {
     }
     public int longestStrChain(String[] words) {
 
-        int[][] DP=new int[words.length+1][words.length+1];
+        int[] Aux=new int[words.length];
+        for(int i=0;i<Aux.length;i++)
+            Aux[i]=1;
 
-        for(int i=0;i<words.length+1;i++){
-
-            for(int j=0;j<words.length+1;j++){
-                if(j==0){
-                    DP[i][j]=0;
-                    continue;
+        int max=1;
+        Arrays.sort(words, (a, b)->a.length() - b.length()); // Sorted the strings length wise // The question misses to mention that the longest chain could be found in any order
+        for(int i=0;i<words.length-1;i++){
+            for(int j=i+1;j<words.length;j++){
+                if(isPrefix(words[i],words[j])){
+                    Aux[j]=Math.max(Aux[j],Aux[i]+1);
+                    if(max<Aux[j])
+                        max=Aux[j];
                 }
-                if(i==0){
-                    DP[i][j]=1;
-                    continue;
-                }
-                if(i==j){
-                    DP[i][j]=1;
-                    continue;
-                }
-                if(isPrefix(words[i-1],words[j-1])){
-                    DP[i][j]=DP[i-1][j-1]+1;
-                }else{
-                    DP[i][j]=Math.max(DP[i-1][j],DP[i][j-1]);
-                }
-
-
             }
-
         }
-        //print(DP);
-        return DP[words.length-1][words.length];
+
+        return max;
     }
 
     public static void main(String[] args) {
@@ -79,6 +52,9 @@ public class Medium_LongestStringChain {
         System.out.println(obj.longestStrChain(new String[]{
                 "a","b","ba","bca","bda","bdca"
         }));//4
+        System.out.println(obj.longestStrChain(new String[]{
+                "ksqvsyq","ks","kss","czvh","zczpzvdhx","zczpzvh","zczpzvhx","zcpzvh","zczvh","gr","grukmj","ksqvsq","gruj","kssq","ksqsq","grukkmj","grukj","zczpzfvdhx","gru"
+        }));//7
 
     }
 }
